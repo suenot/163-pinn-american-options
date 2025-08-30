@@ -1,0 +1,112 @@
+[package]
+name = "pinn_american_options"
+version = "0.1.0"
+edition = "2021"
+description = "Physics-Informed Neural Network for American option pricing with Bybit crypto data"
+authors = ["ML Trading Examples"]
+license = "MIT"
+keywords = ["trading", "options", "pinn", "american-options", "neural-network", "crypto"]
+
+[lib]
+name = "pinn_american_options"
+path = "src/lib.rs"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# BINARIES
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[[bin]]
+name = "train"
+path = "src/bin/train.rs"
+
+[[bin]]
+name = "price_options"
+path = "src/bin/price_options.rs"
+
+[[bin]]
+name = "fetch_data"
+path = "src/bin/fetch_data.rs"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# EXAMPLES
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[[example]]
+name = "american_put_demo"
+path = "examples/american_put_demo.rs"
+
+[[example]]
+name = "exercise_boundary"
+path = "examples/exercise_boundary.rs"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DEPENDENCIES
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[dependencies]
+# Linear algebra and numerical computing
+ndarray = { version = "0.15", features = ["serde"] }
+ndarray-rand = "0.14"
+ndarray-stats = "0.5"
+
+# Statistics
+statrs = "0.16"
+
+# Random number generation
+rand = "0.8"
+rand_distr = "0.4"
+
+# HTTP client for Bybit API
+reqwest = { version = "0.11", features = ["json", "blocking"] }
+
+# JSON serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Async runtime
+tokio = { version = "1.0", features = ["full"] }
+
+# Date/time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging
+log = "0.4"
+env_logger = "0.10"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# CSV export
+csv = "1.3"
+
+# HMAC for Bybit API authentication
+hmac = "0.12"
+sha2 = "0.10"
+hex = "0.4"
+
+# CLI argument parsing
+clap = { version = "4.4", features = ["derive"] }
+
+# Pretty printing
+tabled = "0.15"
+colored = "2.1"
+
+# Progress bars
+indicatif = "0.17"
+
+# Ordered floats
+ordered-float = "4.2"
+
+# Approximate float comparisons
+approx = "0.5"
+
+[dev-dependencies]
+criterion = "0.5"
+tokio-test = "0.4"
+
+[[bench]]
+name = "pinn_bench"
+harness = false
